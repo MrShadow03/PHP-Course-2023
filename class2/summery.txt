@@ -1,0 +1,14 @@
+a) Super global
+    1. $_GET
+    2. $_POST
+    3. $_REQUEST
+    4. $_SESSION
+    5. $_COOKIE
+
+b) Redirecting to another page
+    1. header('Location:../index.php');
+
+c) Session
+    1. session_start();
+    2. $_SESSION['username'] = $username;
+    3. session_destroy();
