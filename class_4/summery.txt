@@ -1,0 +1,6 @@
+a) About MySql
+b) About PhpMyAdmin
+c) Create a database
+d) Create connection
+e) Create a table
+f) Insert data into table
