@@ -4,3 +4,9 @@
 4. AND, OR, NOT
 5. ORDER BY (ASC, DESC)
 6. (MIN, MAX, AVG, COUNT)
+
+// .....CRUD.....
+// CREATE 
+// READ
+// UPDATE 
+// DELETE 🎃

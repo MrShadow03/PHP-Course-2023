@@ -86,13 +86,32 @@ if (!isset($_SESSION['email'])) {
         border-bottom: none;
     }
 
-    tbody tr:hover {
+    /* tbody tr:hover {
         background-color: var(--md-teal-500);
         color: white;
     }
 
     tbody tr:hover td {
         border-bottom-color: white;
+    } */
+    .btn{
+        padding: 0.5em 1em;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        background-color: var(--md-teal-100);
+        cursor: pointer;
+        text-decoration: none;
+        font-size: 14px;
+    }
+    .btn:hover{
+        background-color: var(--md-teal-500);
+    }
+    .btn-danger{
+        background-color: #f44336;
+    }
+    .btn-danger:hover{
+        background-color: #d32f2f;
     }
 </style>
 
@@ -107,42 +126,46 @@ if (!isset($_SESSION['email'])) {
     </nav>
     <h1 class="table_title">Users</h1>
     <?php
-    $sql = "SELECT name FROM users WHERE age >= 32";
+    $sql = "SELECT * FROM users";
     $query = mysqli_query($connection, $sql);
+    // $all_users = mysqli_fetch_array($query);
 
-    $all_users = mysqli_fetch_all($query);
+    // echo '<pre>';
+    // while($row = mysqli_fetch_assoc($query)){
+    //     print_r($row);
+    // }
+    // echo '</pre>';
 
-    echo '<pre>';
-    print_r($all_users);
-    echo '</pre>';
-
-    //Select all users from database and display them in a table
-    // $sql = "SELECT * FROM users";
-    //Insert a new user into the database
-    // $sql = "INSERT INTO users (name, email, password, age) VALUES ('John Doe', '
     ?>
     <table>
         <thead>
             <tr>
                 <th>Name</th>
                 <th>Email</th>
+                <th>Photo</th>
                 <th>Age</th>
+                <th>Address</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>John Doe</td>
-                <td>jdoe@gmail.com</td>
-                <td>32</td>
-            </tr>
-            <tr>
-                <td>Mr. Miraz</td>
-                <td>m@gmail.com</td>
-                <td>32</td>
-            </tr>
+            <?php while($row = mysqli_fetch_assoc($query)){ ?>
+                <tr>
+                    <td><?php echo $row['name']; ?></td>
+                    <td><?php echo $row['email']; ?></td>
+                    <td>
+                        <img src="./storage/<?php echo $row['photo']; ?>" alt="" width="50">
+                    </td>
+                    <td><?php echo $row['age']; ?></td>
+                    <td><?php echo $row['address']; ?></td>
+                    <td>
+                        <a href="./edit.php/?id=<?php echo $row['id'] ?>" class="btn btn-primary">Edit</a>
+                        <a href="./delete.php/?id=<?php echo $row['id'] ?>" onclick="return confirm('Are you sure you want to delete this user?')" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            <?php } ?>
         </tbody>
     </table>
-
 </body>
 
 </html>

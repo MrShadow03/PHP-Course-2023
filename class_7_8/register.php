@@ -1,6 +1,9 @@
 <?php
 include 'helper/session.php';
 include 'helper/db.php';
+if(isset($_SESSION['email'])){
+    header('Location: dashboard.php');
+}
 ?>
 
 <!-- html user form with name, email and password -->
@@ -29,7 +32,7 @@ include 'helper/db.php';
     </style>
 </head>
 <body>
-    <form action="./controller/RegisterController.php" method="post">
+    <form action="./controller/RegisterController.php" method="post" enctype="multipart/form-data">
         <p class="input-error">
             <?php 
                 if(isset($_SESSION['error'])){
@@ -41,6 +44,7 @@ include 'helper/db.php';
         <input type="text" name="name" placeholder="Name">
         <input type="email" name="email" placeholder="Email">
         <input type="password" name="password" placeholder="Password">
+        <input type="file" name="photo">
         <input type="submit" name="submit" value="Register">
     </form>
 </body>

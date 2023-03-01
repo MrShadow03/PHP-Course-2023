@@ -10,3 +10,7 @@ $connection = new mysqli($host, $username, $password, $db);
 if($connection->connect_error){
     die('Connection failed');
 }
+
+// $sql = "DROP TABLE test";
+
+// mysqli_query($connection, $sql);
