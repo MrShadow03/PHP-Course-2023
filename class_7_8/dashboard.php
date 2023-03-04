@@ -154,13 +154,13 @@ if (!isset($_SESSION['email'])) {
                     <td><?php echo $row['name']; ?></td>
                     <td><?php echo $row['email']; ?></td>
                     <td>
-                        <img src="./storage/<?php echo $row['photo']; ?>" alt="" width="50">
+                        <img src="./storage/<?php echo $row['photo']; ?>" alt="ok" width="50">
                     </td>
                     <td><?php echo $row['age']; ?></td>
                     <td><?php echo $row['address']; ?></td>
                     <td>
-                        <a href="./edit.php/?id=<?php echo $row['id'] ?>" class="btn btn-primary">Edit</a>
-                        <a href="./delete.php/?id=<?php echo $row['id'] ?>" onclick="return confirm('Are you sure you want to delete this user?')" class="btn btn-danger">Delete</a>
+                        <a href="./edit.php?id=<?php echo $row['id']; ?>" class="btn btn-primary">Edit</a>
+                        <a href="./delete.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure you want to delete this user?')" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
             <?php } ?>

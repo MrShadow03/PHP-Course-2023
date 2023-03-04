@@ -1,16 +1,16 @@
 <?php
-include 'helper/session.php';
-include 'helper/db.php';
-if(!isset($_SESSION['email'])){
-    header('Location: index.php');
-}
-//getting the id from the url
-$id = $_GET['id'];
+    include 'helper/session.php';
+    include 'helper/db.php';
+    if(!isset($_SESSION['email'])){
+        header('Location: index.php');
+    }
+    //getting the id from the url
+    $id = $_GET['id'];
 
-//getting the user info from the database
-$sql = "SELECT * FROM users WHERE id = '$id'";
-$query = mysqli_query($connection, $sql);
-$user_info = mysqli_fetch_assoc($query);
+    //getting the user info from the database
+    $sql = "SELECT * FROM users WHERE id = '$id'";
+    $query = mysqli_query($connection, $sql);
+    $user_info = mysqli_fetch_assoc($query);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +18,7 @@ $user_info = mysqli_fetch_assoc($query);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Register</title>
+    <title>Document</title>
     <style>
         form{
             width: 300px;
@@ -38,7 +38,7 @@ $user_info = mysqli_fetch_assoc($query);
 </head>
 <body>
     <h1 class="form_title">Edit <?php echo $user_info['name'] ?>'s Information</h1>
-    <form action="./controller/UpdateController.php" method="post" enctype="multipart/form-data">
+    <form action="../controller/UpdateController.php" method="post">
         <p class="input-error">
             <?php 
                 if(isset($_SESSION['error'])){
@@ -49,12 +49,10 @@ $user_info = mysqli_fetch_assoc($query);
         </p>
         <img src="./storage/<?php echo $user_info['photo'] ?>" alt="Image is Here" width="50">
         <input type="hidden" name="id" value="<?php echo $user_info['id'] ?>" >
-        <input type="hidden" name="old_photo" value="<?php echo $user_info['photo'] ?>" >
         <input type="text" name="name" placeholder="Name" value="<?php echo $user_info['name'] ?>" >
         <input type="email" name="email" placeholder="Email" value="<?php echo $user_info['email'] ?>" >
         <input type="number" name="age" placeholder="Age" value="<?php echo $user_info['age'] ?>" >
         <input type="text" name="address" placeholder="Address" value="<?php echo $user_info['address'] ?>" >
-        <input type="file" name="photo">
         <input type="submit" name="submit" value="Update">
     </form>
 </body>

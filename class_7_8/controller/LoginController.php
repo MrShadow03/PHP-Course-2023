@@ -12,7 +12,7 @@ if(isset($_POST['submit'])){
         header('Location: ../index.php');
     }else{
         if(filter_var($email, FILTER_VALIDATE_EMAIL) == false){
-            $_SESSION['error'] = 'Invalid email';
+            $_SESSION['email_error'] = 'Invalid email';
             header('Location: ../index.php');
         }else{
             $select_sql = "SELECT * FROM users WHERE email = '$email' AND password = '$password'";

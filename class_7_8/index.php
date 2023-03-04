@@ -53,6 +53,14 @@ if(isset($_SESSION['email'])){
              ?>
         </p>
         <input type="text" name="email" placeholder="email">
+        <p class="input_error">
+            <?php 
+                if(isset($_SESSION['email_error'])){
+                    echo $_SESSION['email_error'];
+                    unset($_SESSION['email_error']);
+                }
+             ?>
+        </p>
         <input type="password" name="password" placeholder="Password">
         <input type="submit" name="submit" value="Login">
     </form>
