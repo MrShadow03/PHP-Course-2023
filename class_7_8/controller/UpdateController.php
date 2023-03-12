@@ -72,5 +72,5 @@ if(isset($_POST['submit'])){
         }
     }
 }
-
+$create_sql = "INSERT INTO posts (title, text, user_id) VALUES ('$title', '$text', '$user_id')"
 ?>

@@ -113,6 +113,17 @@ if (!isset($_SESSION['email'])) {
     .btn-danger:hover{
         background-color: #d32f2f;
     }
+    .btn-success{
+        background-color: #4caf50;
+    }
+    .btn-success:hover{
+        background-color: #388e3c;
+    }
+    .actions{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 </style>
 
 <body>
@@ -137,6 +148,14 @@ if (!isset($_SESSION['email'])) {
     // echo '</pre>';
 
     ?>
+    <p class="message">
+        <?php
+        if (isset($_SESSION['message'])) {
+            echo $_SESSION['message'];
+            unset($_SESSION['message']);
+        }
+        ?>
+    </p>
     <table>
         <thead>
             <tr>
@@ -145,6 +164,7 @@ if (!isset($_SESSION['email'])) {
                 <th>Photo</th>
                 <th>Age</th>
                 <th>Address</th>
+                <th>Status</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -158,7 +178,9 @@ if (!isset($_SESSION['email'])) {
                     </td>
                     <td><?php echo $row['age']; ?></td>
                     <td><?php echo $row['address']; ?></td>
-                    <td>
+                    <td><?php echo $row['status'] == true ? 'Active' : 'Inactive' ; ?></td>
+                    <td class="actions">
+                        <a href="./updateStatus.php?id=<?php echo $row['id']; ?>&status=<?php echo $row['status'] ?>" class="btn <?php echo $row['status'] == true ? 'btn-danger' : 'btn-success' ; ?>"><?php echo $row['status'] == true ? 'Deactivate' : 'Activate' ; ?></a>
                         <a href="./edit.php?id=<?php echo $row['id']; ?>" class="btn btn-primary">Edit</a>
                         <a href="./delete.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure you want to delete this user?')" class="btn btn-danger">Delete</a>
                     </td>
